@@ -1,0 +1,36 @@
+## Component Configuration
+* Control PC: Install a real-time Linux distribution (e.g., Ubuntu with PREEMPT_RT kernel or a dedicated LinuxCNC distribution). Configure the PCIe motion control card drivers. Develop custom Python/C++ code for the high-speed servo loop (PID control based on motor encoders and force sensor feedback).
+* NEMA23 Stepper Motors: Pair each motor with a closed-loop stepper driver (e.g., Leadshine HBS57). Configure drivers for appropriate current and microstepping. Mount motors at the top corners of the aluminum frame. Use encoder feedback from the closed-loop drivers to the motion control card for precise position tracking.
+* Motor Controller Box: House the four stepper drivers, a common breakout board, and the emergency stop circuit. Wire the Step/Direction/Enable signals from the motion control card to each driver. Connect 48V DC power from two dedicated PSUs. The E-stop should cut power to the motor drivers and potentially the 48V PSUs directly for safety.
+* Inline Force Sensors: Integrate each 500N S-type load cell directly into each of the four suspension cables, ensuring they are always under tension. Connect each load cell to a dedicated HX711 amplifier breakout board. Mount these amplifiers in a small, shielded enclosure near the control PC or within the main motor controller box.
+* ADC Module: If using separate HX711 boards, connect their digital outputs (DATA, CLK) to GPIO pins on a Raspberry Pi or an industrial ADC module that communicates with the Control PC via USB, SPI, or Ethernet. Ensure high-speed, synchronized readings.
+* 80/20 Aluminum Extrusion Frame: Assemble the frame in a 6m x 6m square, with 3m tall corner posts and horizontal crossbeams at the top. Design for modularity to allow disassembly. Ensure all joints are robust and load-bearing.
+* Cable System: Each NEMA23 motor will have a spool or capstan. The Dyneema cables will unwind/wind from these spools. Route each cable through a series of low-friction pulleys mounted on the aluminum frame, leading downwards to the center of the arena. Integrate the inline force sensors and automatic tensioners (e.g., spring-loaded or counter-weighted) into each cable path.
+* Robot Harness: Design a lightweight, custom harness that securely attaches to the aerial robot at multiple points. Integrate four magnetic breakaway connectors, one for each suspension cable. The magnets should be strong enough to hold the robot during normal operation but release under excessive force or intentional manual override.
+
+## Mechanical Integration
+* Frame Assembly: The 80/20 aluminum extrusion frame will be assembled using T-nuts and angle brackets. Design the frame in modular sections (e.g., 2m or 3m segments) that can be easily bolted together and disassembled for transport. Ensure corner posts are securely anchored to the ground or weighted for stability.
+* Motor Mounting: Mount NEMA23 motors at each of the four top corners of the 6x6m frame. Use robust motor mounts designed for 80/20 extrusion. Ensure motor shafts are aligned with initial cable paths.
+* Pulley & Cable Routing: Install bearing-equipped pulleys at critical points to guide the Dyneema cables from the motor spools down to the central robot harness attachment point. Minimize cable bending radius and friction. Integrate the force sensors in a way that the cable tension is directly measured.
+* Cable Tensioners: Design and integrate mechanical (e.g., spring-loaded) or smart (motor-controlled) cable tensioners to prevent slack and maintain even tension across all four cables, crucial for stability and safety.
+* Robot Harness: Fabricate a custom harness from durable nylon webbing or similar material, tailored to the robot's dimensions. Integrate the four magnetic breakaway connectors at the top, where the suspension cables attach. Ensure the harness balances the robot's weight evenly.
+* Motor Controller Box: Mount the steel enclosure in a safe, accessible location near the control PC. Ensure proper ventilation for the stepper drivers. All high-voltage connections should be professionally terminated.
+* Safety Netting: Erect modular safety netting around the entire 6x6m perimeter of the suspension system frame. This netting should be at least 3m high to catch a falling robot or prevent accidental contact. It should be easily attachable/detachable for setup/teardown.
+* Floor Padding: Lay high-density foam mats across the entire 6x6m footprint of the arena. These mats should interlock and be thick enough (at least 2cm) to absorb impact in case of a robot crash, protecting both the robot and the floor.
+
+## Assembly Logic
+* Step 1: Assemble the 80/20 aluminum extrusion frame. Start with the base, then the 3m corner posts, and finally the top crossbeams. Ensure all connections are tightened securely. The frame must be perfectly level and square.
+* Step 2: Mount the NEMA23 stepper motors at each of the four top corners of the frame. Install the motor controller box in its designated location, run power and signal cables to each motor.
+* Step 3: Route the Dyneema cables from each motor's spool, through the pulley system, incorporating the inline force sensors and cable tensioners. Each cable should lead to a central point above the arena.
+* Step 4: Assemble the robot harness and attach the magnetic breakaway connectors. Connect the four suspension cables to these connectors.
+* Step 5: Install the AC power distribution box. Connect the 48V motor power supplies, the control PC's PSU, and the sensor/logic PSUs to the PDU. Then connect the PDU to a wall outlet (ensure adequate circuit capacity).
+* Step 6: Connect the 48V motor PSUs to the motor controller box. Connect the 5V/12V sensor PSU to the load cell amplifiers and any other low-voltage logic.
+* Step 7: Install the control PC and the PCIe motion control card. Connect the motion control card to the motor controller box (e.g., via parallel port breakout cable) and the ADC module to the control PC (e.g., USB or Ethernet).
+* Step 8: Wire the force sensors to the load cell amplifiers, and the amplifiers to the ADC module.
+* Step 9: Install the emergency stop button on the motor controller box, ensuring it directly cuts power to the motor PSUs and sends a safety signal to the motion controller.
+* Step 10: Lay out the high-density foam floor padding across the entire 6x6m arena area.
+* Step 11: Erect and secure the perimeter safety netting around the entire frame.
+* Step 12: Install the real-time OS and LinuxCNC (or equivalent) on the control PC. Configure the motion control card and develop/load the servo control loop software.
+* Step 13: Power up all systems. Perform initial calibration of force sensors and motor encoder positions. Test E-stop functionality thoroughly before any robot testing.
+* Step 14: Carefully attach the aerial robot to the harness and perform controlled, slow initial movements and safety checks. Debug the servo loop for stability and accuracy.
+* Step 15: For transport, reverse the assembly steps: detach netting, remove floor padding, disassemble cable system, remove motors and electronics, and then disassemble the modular 80/20 frame sections. Pack components into labeled cases/bins.

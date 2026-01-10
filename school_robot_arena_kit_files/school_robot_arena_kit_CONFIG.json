@@ -1,0 +1,478 @@
+{
+  "nodes": [
+    {
+      "id": "rpi5_main",
+      "name": "Raspberry Pi 5 (Main Controller)",
+      "type": "mcu",
+      "description": "Orchestrates camera data, LED control, scoreboard updates, and referee station communication."
+    },
+    {
+      "id": "usb_cam_left",
+      "name": "USB Camera (Left)",
+      "type": "sensor",
+      "description": "Captures left view for stereo AprilTag tracking."
+    },
+    {
+      "id": "usb_cam_right",
+      "name": "USB Camera (Right)",
+      "type": "sensor",
+      "description": "Captures right view for stereo AprilTag tracking."
+    },
+    {
+      "id": "usb_hub_cam",
+      "name": "Powered USB 3.0 Hub (Camera)",
+      "type": "module",
+      "description": "Provides stable power and data for two USB cameras to RPi5."
+    },
+    {
+      "id": "led_strip_controller",
+      "name": "WS2812B LED Controller (ESP32)",
+      "type": "mcu",
+      "description": "Drives the addressable LED perimeter lighting, controlled by RPi5."
+    },
+    {
+      "id": "ws2812b_leds",
+      "name": "WS2812B LED Strips",
+      "type": "actuator",
+      "description": "Perimeter lighting for arena visibility."
+    },
+    {
+      "id": "arena_mat_3x3m",
+      "name": "Sumo Competition Mat (3x3m)",
+      "type": "other",
+      "description": "Official size competition surface with markings."
+    },
+    {
+      "id": "camera_rig_frame",
+      "name": "Overhead Camera Rig (Aluminum/PVC)",
+      "type": "other",
+      "description": "Modular frame to mount two cameras at optimal height and angle for stereo vision."
+    },
+    {
+      "id": "referee_laptop_stand",
+      "name": "Referee Laptop Stand",
+      "type": "other",
+      "description": "Ergonomic stand for a referee's laptop."
+    },
+    {
+      "id": "referee_button_panel",
+      "name": "Custom Button Panel (Arduino-based)",
+      "type": "module",
+      "description": "Physical buttons for referee actions (start, stop, score, reset) connected to RPi5 via USB."
+    },
+    {
+      "id": "timer_display_ref",
+      "name": "Small LCD/OLED Display",
+      "type": "display",
+      "description": "Displays match timer for the referee, connected to RPi5 or Arduino."
+    },
+    {
+      "id": "robot_charging_station",
+      "name": "Multi-Port USB Charging Hub",
+      "type": "module",
+      "description": "Dedicated charging station for up to 2 robots with power distribution."
+    },
+    {
+      "id": "safety_barriers",
+      "name": "Modular Foam Safety Panels",
+      "type": "other",
+      "description": "Stackable, soft foam panels for spectator safety."
+    },
+    {
+      "id": "equipment_cart",
+      "name": "Heavy-Duty Equipment Storage Cart",
+      "type": "other",
+      "description": "Wheeled cart for transport and storage of all kit components."
+    },
+    {
+      "id": "storage_bins",
+      "name": "Stackable Storage Bins",
+      "type": "other",
+      "description": "Organizes components within the cart."
+    },
+    {
+      "id": "scoreboard_led_display",
+      "name": "Large LED Matrix Display (P10 Panels)",
+      "type": "display",
+      "description": "Public scoreboard to show timer, scores, and match status."
+    },
+    {
+      "id": "scoreboard_controller",
+      "name": "ESP32/RPi Zero 2W (Scoreboard)",
+      "type": "mcu",
+      "description": "Wireless receiver/controller for the LED scoreboard display."
+    },
+    {
+      "id": "power_supply_rpi",
+      "name": "Raspberry Pi 5 Power Supply (27W USB-C)",
+      "type": "power",
+      "description": "Powers the main Raspberry Pi 5."
+    },
+    {
+      "id": "power_supply_hub_cam",
+      "name": "USB Hub Power Supply (Camera)",
+      "type": "power",
+      "description": "Powers the camera USB hub."
+    },
+    {
+      "id": "power_supply_leds",
+      "name": "5V High Current Power Supply (LEDs)",
+      "type": "power",
+      "description": "Dedicated power supply for the WS2812B LED strips."
+    },
+    {
+      "id": "power_supply_charging",
+      "name": "Multi-Port USB Charging Station Power Supply",
+      "type": "power",
+      "description": "Powers the robot charging station."
+    },
+    {
+      "id": "power_supply_scoreboard",
+      "name": "5V Power Supply (Scoreboard)",
+      "type": "power",
+      "description": "Powers the LED scoreboard display and its controller."
+    },
+    {
+      "id": "ethernet_switch",
+      "name": "Gigabit Ethernet Switch",
+      "type": "module",
+      "description": "Provides wired network backbone for RPi5 and optional referee laptop."
+    },
+    {
+      "id": "robot_usb_cables",
+      "name": "Robot Charging Cables (x2)",
+      "type": "other",
+      "description": "USB cables for charging robots."
+    }
+  ],
+  "links": [
+    {
+      "source": "power_supply_rpi",
+      "target": "rpi5_main",
+      "type": "power",
+      "label": "5.1V/5A USB-C"
+    },
+    {
+      "source": "power_supply_hub_cam",
+      "target": "usb_hub_cam",
+      "type": "power",
+      "label": "12V DC"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "usb_hub_cam",
+      "type": "data",
+      "label": "USB 3.0"
+    },
+    {
+      "source": "usb_hub_cam",
+      "target": "usb_cam_left",
+      "type": "data",
+      "label": "USB 2.0"
+    },
+    {
+      "source": "usb_hub_cam",
+      "target": "usb_cam_right",
+      "type": "data",
+      "label": "USB 2.0"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "led_strip_controller",
+      "type": "data",
+      "label": "UART/SPI (GPIO)"
+    },
+    {
+      "source": "power_supply_leds",
+      "target": "led_strip_controller",
+      "type": "power",
+      "label": "5V DC"
+    },
+    {
+      "source": "power_supply_leds",
+      "target": "ws2812b_leds",
+      "type": "power",
+      "label": "5V DC"
+    },
+    {
+      "source": "led_strip_controller",
+      "target": "ws2812b_leds",
+      "type": "data",
+      "label": "Data Pin"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "referee_button_panel",
+      "type": "data",
+      "label": "USB 2.0"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "timer_display_ref",
+      "type": "data",
+      "label": "I2C/SPI (GPIO)"
+    },
+    {
+      "source": "power_supply_charging",
+      "target": "robot_charging_station",
+      "type": "power",
+      "label": "12V/5V DC"
+    },
+    {
+      "source": "robot_charging_station",
+      "target": "robot_usb_cables",
+      "type": "power",
+      "label": "USB Power 5V"
+    },
+    {
+      "source": "power_supply_scoreboard",
+      "target": "scoreboard_led_display",
+      "type": "power",
+      "label": "5V DC"
+    },
+    {
+      "source": "power_supply_scoreboard",
+      "target": "scoreboard_controller",
+      "type": "power",
+      "label": "5V DC"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "scoreboard_controller",
+      "type": "data",
+      "label": "Wi-Fi (MQTT/UDP)"
+    },
+    {
+      "source": "scoreboard_controller",
+      "target": "scoreboard_led_display",
+      "type": "data",
+      "label": "GPIO/HUB75"
+    },
+    {
+      "source": "rpi5_main",
+      "target": "ethernet_switch",
+      "type": "data",
+      "label": "Ethernet"
+    }
+  ],
+  "bom": [
+    {
+      "name": "Raspberry Pi 5 (8GB RAM)",
+      "quantity": 1,
+      "estimatedCost": 80,
+      "purchaseUrl": "https://www.adafruit.com/product/5815",
+      "description": "Main control unit for arena systems, vision processing, and communication.",
+      "amazonUrl": "https://www.amazon.com/s?k=Raspberry%20Pi%205%20(8GB%20RAM)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Raspberry Pi 5 27W USB-C Power Supply",
+      "quantity": 1,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.adafruit.com/product/5828",
+      "description": "Official power for RPi5.",
+      "amazonUrl": "https://www.amazon.com/s?k=Raspberry%20Pi%205%2027W%20USB-C%20Power%20Supply&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "SanDisk Extreme 64GB microSD Card (A2 rated)",
+      "quantity": 1,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.adafruit.com/product/4909",
+      "description": "High-speed storage for RPi OS, vision software, and data.",
+      "amazonUrl": "https://www.amazon.com/s?k=SanDisk%20Extreme%2064GB%20microSD%20Card%20(A2%20rated)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "OV5640 USB Camera Module (5MP)",
+      "quantity": 2,
+      "estimatedCost": 50,
+      "purchaseUrl": "https://www.amazon.com/ELP-OV5640-Camera-Autofocus-Industrial/dp/B08V8R3R3T",
+      "description": "Two identical cameras for stereo AprilTag tracking.",
+      "amazonUrl": "https://www.amazon.com/s?k=OV5640%20USB%20Camera%20Module%20(5MP)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Powered USB 3.0 Hub (7-port with external PSU)",
+      "quantity": 1,
+      "estimatedCost": 30,
+      "purchaseUrl": "https://www.amazon.com/AmazonBasics-Port-USB-Power-Adapter/dp/B0797P1Z5J",
+      "description": "Powers and manages data for two cameras, connected to RPi5.",
+      "amazonUrl": "https://www.amazon.com/s?k=Powered%20USB%203.0%20Hub%20(7-port%20with%20external%20PSU)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "WS2812B Addressable LED Strip (IP65, 5m, 60 LEDs/m)",
+      "quantity": 3,
+      "estimatedCost": 60,
+      "purchaseUrl": "https://www.adafruit.com/product/1460",
+      "description": "Perimeter lighting (total 15m, cut to fit 3x3m perimeter + spares).",
+      "amazonUrl": "https://www.amazon.com/s?k=WS2812B%20Addressable%20LED%20Strip%20(IP65%2C%205m%2C%2060%20LEDs%2Fm)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "ESP32 Development Board (e.g., ESP32-WROOM-32)",
+      "quantity": 1,
+      "estimatedCost": 10,
+      "purchaseUrl": "https://www.adafruit.com/product/3405",
+      "description": "Microcontroller for LED strip control.",
+      "amazonUrl": "https://www.amazon.com/s?k=ESP32%20Development%20Board%20(e.g.%2C%20ESP32-WROOM-32)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "5V 10A Power Supply (for LEDs)",
+      "quantity": 1,
+      "estimatedCost": 25,
+      "purchaseUrl": "https://www.adafruit.com/product/2763",
+      "description": "High-current power for LED strips.",
+      "amazonUrl": "https://www.amazon.com/s?k=5V%2010A%20Power%20Supply%20(for%20LEDs)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Sumo Competition Mat (3x3m, durable vinyl)",
+      "quantity": 1,
+      "estimatedCost": 350,
+      "purchaseUrl": "https://www.google.com/search?q=3x3m+robot+sumo+mat+official",
+      "description": "Official size mat with sumo markings.",
+      "amazonUrl": "https://www.amazon.com/s?k=Sumo%20Competition%20Mat%20(3x3m%2C%20durable%20vinyl)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Aluminum Extrusion (20x20mm, 1m lengths)",
+      "quantity": 12,
+      "estimatedCost": 120,
+      "purchaseUrl": "https://www.amazon.com/Aluminum-Extrusion-European-Standard-Anodized/dp/B09VPH7294",
+      "description": "Modular frame for overhead camera rig (can be disassembled).",
+      "amazonUrl": "https://www.amazon.com/s?k=Aluminum%20Extrusion%20(20x20mm%2C%201m%20lengths)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Aluminum Extrusion Connectors & Brackets",
+      "quantity": 1,
+      "estimatedCost": 30,
+      "purchaseUrl": "https://www.amazon.com/Connector-Bracket-Fastener-Aluminum-Extrusion/dp/B09S3622H7",
+      "description": "For assembling the camera rig frame.",
+      "amazonUrl": "https://www.amazon.com/s?k=Aluminum%20Extrusion%20Connectors%20%26%20Brackets&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Referee Laptop Stand (Folding/Adjustable)",
+      "quantity": 1,
+      "estimatedCost": 40,
+      "purchaseUrl": "https://www.amazon.com/adjustable-laptop-stand/s?k=adjustable+laptop+stand",
+      "description": "Portable stand for referee's laptop.",
+      "amazonUrl": "https://www.amazon.com/s?k=Referee%20Laptop%20Stand%20(Folding%2FAdjustable)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Arduino Leonardo/Pro Micro (for button panel)",
+      "quantity": 1,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.adafruit.com/product/871",
+      "description": "Acts as a USB HID device for referee button panel.",
+      "amazonUrl": "https://www.amazon.com/s?k=Arduino%20Leonardo%2FPro%20Micro%20(for%20button%20panel)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Arcade Push Buttons (various colors)",
+      "quantity": 8,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.adafruit.com/product/3489",
+      "description": "Durable buttons for referee actions.",
+      "amazonUrl": "https://www.amazon.com/s?k=Arcade%20Push%20Buttons%20(various%20colors)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Small Breadboard/Perfboard & Jumper Wires",
+      "quantity": 1,
+      "estimatedCost": 10,
+      "purchaseUrl": "https://www.adafruit.com/product/64",
+      "description": "For custom button panel wiring.",
+      "amazonUrl": "https://www.amazon.com/s?k=Small%20Breadboard%2FPerfboard%20%26%20Jumper%20Wires&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "I2C OLED Display (128x32/128x64)",
+      "quantity": 1,
+      "estimatedCost": 10,
+      "purchaseUrl": "https://www.adafruit.com/product/938",
+      "description": "For referee timer display.",
+      "amazonUrl": "https://www.amazon.com/s?k=I2C%20OLED%20Display%20(128x32%2F128x64)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Multi-Port USB Charging Station (min. 4 ports, 40W+)",
+      "quantity": 1,
+      "estimatedCost": 30,
+      "purchaseUrl": "https://www.amazon.com/Anker-Charger-Adapter-PowerPort-Foldable/dp/B07L3Y7W7H",
+      "description": "Dedicated charging for 2 robots simultaneously plus spares.",
+      "amazonUrl": "https://www.amazon.com/s?k=Multi-Port%20USB%20Charging%20Station%20(min.%204%20ports%2C%2040W%2B)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Modular Foam Safety Panels (1x0.5m, stackable)",
+      "quantity": 8,
+      "estimatedCost": 160,
+      "purchaseUrl": "https://www.google.com/search?q=modular+foam+safety+panels",
+      "description": "Creates a safety perimeter around the arena.",
+      "amazonUrl": "https://www.amazon.com/s?k=Modular%20Foam%20Safety%20Panels%20(1x0.5m%2C%20stackable)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Heavy-Duty Utility Cart (Folding/Wheeled)",
+      "quantity": 1,
+      "estimatedCost": 150,
+      "purchaseUrl": "https://www.amazon.com/folding-utility-cart-heavy-duty/s?k=folding+utility+cart+heavy+duty",
+      "description": "For transport and storage of all components.",
+      "amazonUrl": "https://www.amazon.com/s?k=Heavy-Duty%20Utility%20Cart%20(Folding%2FWheeled)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Stackable Plastic Storage Bins (various sizes)",
+      "quantity": 6,
+      "estimatedCost": 50,
+      "purchaseUrl": "https://www.amazon.com/stackable-storage-bins-plastic/s?k=stackable+storage+bins+plastic",
+      "description": "Organizes small parts, cables, and tools.",
+      "amazonUrl": "https://www.amazon.com/s?k=Stackable%20Plastic%20Storage%20Bins%20(various%20sizes)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "P10 LED Matrix Panels (32x16 pixels, RGB)",
+      "quantity": 4,
+      "estimatedCost": 120,
+      "purchaseUrl": "https://www.adafruit.com/product/2279",
+      "description": "Build a large scoreboard (e.g., 64x32 pixels total).",
+      "amazonUrl": "https://www.amazon.com/s?k=P10%20LED%20Matrix%20Panels%20(32x16%20pixels%2C%20RGB)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Hub75 LED Matrix Driver Board (ESP32-based)",
+      "quantity": 1,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.adafruit.com/product/5412",
+      "description": "Controller for the P10 LED matrix panels.",
+      "amazonUrl": "https://www.amazon.com/s?k=Hub75%20LED%20Matrix%20Driver%20Board%20(ESP32-based)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "5V 20A Power Supply (for Scoreboard)",
+      "quantity": 1,
+      "estimatedCost": 35,
+      "purchaseUrl": "https://www.adafruit.com/product/1461",
+      "description": "Powers the scoreboard LED panels.",
+      "amazonUrl": "https://www.amazon.com/s?k=5V%2020A%20Power%20Supply%20(for%20Scoreboard)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Gigabit Ethernet Switch (5-port)",
+      "quantity": 1,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.amazon.com/TP-Link-5-Port-Gigabit-Ethernet-Switch/dp/B00A1SFMRM",
+      "description": "Wired network for RPi5 and potential referee laptop.",
+      "amazonUrl": "https://www.amazon.com/s?k=Gigabit%20Ethernet%20Switch%20(5-port)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Ethernet Cables (various lengths)",
+      "quantity": 3,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.amazon.com/AmazonBasics-RJ45-Cat6-Ethernet-Patch/dp/B07XQ9L1S2",
+      "description": "For RPi5 to switch, switch to wall, etc.",
+      "amazonUrl": "https://www.amazon.com/s?k=Ethernet%20Cables%20(various%20lengths)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Assorted USB Cables (Type A-C, A-Micro B)",
+      "quantity": 4,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.amazon.com/Anker-Powerline-Durability-Charger-Samsung/dp/B07V52QJ8M",
+      "description": "For robot charging, RPi5 peripherals.",
+      "amazonUrl": "https://www.amazon.com/s?k=Assorted%20USB%20Cables%20(Type%20A-C%2C%20A-Micro%20B)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Cable Management Ties (Velcro/Zip Ties)",
+      "quantity": 1,
+      "estimatedCost": 8,
+      "purchaseUrl": "https://www.amazon.com/Reusable-Cable-Ties-Fastening-Organizing/dp/B07R9QG3M5",
+      "description": "For organizing all cables.",
+      "amazonUrl": "https://www.amazon.com/s?k=Cable%20Management%20Ties%20(Velcro%2FZip%20Ties)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    }
+  ],
+  "approach": "## Component Configuration\n* Raspberry Pi 5: Install Raspberry Pi OS. Configure `apt` for necessary packages (OpenCV, AprilTag, Python libraries). Set up Wi-Fi for wireless communication with the scoreboard controller and potentially referee laptop/tablet. Ethernet to local switch. Connect official 27W USB-C power supply.\n* USB Cameras: Connect both OV5640 cameras to the powered USB 3.0 hub. Ensure unique device paths are identified (e.g., `/dev/video0`, `/dev/video1`) for stereo vision processing in OpenCV.\n* Powered USB 3.0 Hub (Camera): Connect to RPi5 via a high-quality USB 3.0 A-to-B cable. Connect its dedicated power supply.\n* WS2812B LED Strips: Cut to fit the 3x3m perimeter (approx. 3.75m per side, so 4 strips of 3.75m each). Connect in series or parallel segments to the ESP32 LED controller. Ensure proper data line and robust power injection from the 5V 10A supply. Use 3.3V logic level shifters if ESP32 GPIO is 3.3V and LEDs expect 5V signal.\n* ESP32 LED Controller: Program with a library like FastLED. Implement a simple API (e.g., MQTT or UDP) to receive commands from the RPi5 for color, brightness, and patterns. Connect to its 5V power supply and data lines to LEDs.\n* Referee Button Panel: Program an Arduino Leonardo/Pro Micro as a USB HID keyboard. Assign button presses to specific key codes that the RPi5 software can interpret (e.g., 'S' for start, 'P' for pause). Connect to RPi5 via USB. Mount the OLED display to the Arduino or RPi5 GPIO (I2C) for timer feedback.\n* Robot Charging Station: Connect its dedicated power supply. Ensure all USB ports provide sufficient current for rapid robot charging (e.g., 2A per port). Cable manage robot charging cables to be easily accessible.\n* Tournament Scoreboard: Assemble P10 LED panels. Connect them to the Hub75 driver board. Program the ESP32/RPi Zero 2W controller to receive data wirelessly from the main RPi5 (e.g., via MQTT or UDP over Wi-Fi) and display scores/timer. Connect dedicated 5V 20A power supply for optimal brightness and stability.\n\n## Mechanical Integration\n* Arena Mat: Lay out the 3x3m official mat in a clear area. Ensure it is flat and free of wrinkles. Consider non-slip backing if it tends to move.\n* Overhead Camera Rig: Construct a robust, disassemblable gantry-style frame from aluminum extrusions. Design it to be stable and tall enough to place cameras at 2.5m-3m height, providing a full view of the 3x3m arena. Use angle brackets and T-nuts for modularity and easy assembly/disassembly. Mount cameras with adjustable brackets for precise positioning and stereo calibration. The base footprint should be slightly larger than 3x3m for stability.\n* LED Perimeter Lighting: Secure the WS2812B LED strips to the outer edge of the 3x3m arena (can be adhered to the mat, or mounted on low-profile border elements if added). Ensure even light distribution. Consider diffusing covers for a cleaner look.\n* Referee Station: Place the referee laptop stand at a comfortable viewing height and distance from the arena. Mount the custom button panel and timer display for easy access and visibility.\n* Robot Charging Station: Position it conveniently close to the arena, but outside the safety barrier. Use cable clips to manage charging cables.\n* Safety Barriers: Arrange modular foam panels around the entire 3x3m arena perimeter, creating a safe zone for spectators and participants. These should be stackable and easily moved for access or transport.\n* Equipment Storage Cart: Store all arena components in the wheeled cart. Use stackable bins to categorize and organize smaller items (cables, tools, controllers). Ensure the camera rig and mat can be folded/rolled and secured on/in the cart for transport in a school van.\n\n## Assembly Logic\n* Step 1: Roll out and assemble the 3x3m competition mat on a flat, clear floor.\n* Step 2: Assemble the modular aluminum extrusion overhead camera rig. Carefully lift and position it over the arena. Secure its base for stability.\n* Step 3: Mount and position both USB cameras onto the overhead rig, aiming them for optimal stereo coverage of the arena. Connect them to the powered USB 3.0 hub.\n* Step 4: Install the WS2812B LED strips around the arena perimeter. Secure the ESP32 LED controller and connect its power supply and the LED data lines.\n* Step 5: Set up the referee station: place the laptop stand, custom button panel (Arduino connected via USB to RPi5), and timer display. Connect these to the RPi5.\n* Step 6: Position the robot charging station and connect its power supply. Arrange robot charging cables.\n* Step 7: Arrange the modular foam safety barriers around the entire arena perimeter.\n* Step 8: Assemble the P10 LED scoreboard panels and connect them to the Hub75 driver board. Connect the ESP32/RPi Zero 2W scoreboard controller and its dedicated power supply. Place the scoreboard in a visible location.\n* Step 9: Install Raspberry Pi OS on the main RPi5's microSD card. Configure networking (Ethernet to switch, Wi-Fi for scoreboard). Install necessary software (OpenCV, AprilTag libraries, custom Python scripts for vision, control, and scoring).\n* Step 10: Flash firmware to the ESP32 LED controller and ESP32/RPi Zero 2W scoreboard controller. Configure them to communicate with the main RPi5 wirelessly.\n* Step 11: Connect the RPi5 to its power supply and the Ethernet switch.\n* Step 12: Connect the powered USB 3.0 hub to its power supply and to the RPi5 via USB 3.0.\n* Step 13: Power up all components in sequence (power supplies first, then controllers/RPi).\n* Step 14: Calibrate the stereo cameras for accurate 3D position tracking of AprilTags. Test LED control, referee button panel, and scoreboard functionality. Print and distribute AprilTags as needed.\n* Step 15: Perform a full system test to ensure all components integrate and function correctly.\n* Step 16: When transporting, disassemble modular components (camera rig, scoreboard, barriers), roll the mat, and pack all items securely into the wheeled equipment cart and stackable bins for easy loading into a school van.",
+  "projectName": "School Robot Arena Kit"
+}

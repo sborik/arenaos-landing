@@ -1,0 +1,506 @@
+{
+  "nodes": [
+    {
+      "id": "control_pc",
+      "name": "Industrial Control PC",
+      "type": "mcu",
+      "description": "High-performance PC with real-time OS (e.g., LinuxCNC) for high-speed servo loop control."
+    },
+    {
+      "id": "stepper_motor_fl",
+      "name": "NEMA23 Stepper Motor (Front Left)",
+      "type": "actuator",
+      "description": "Drives cable for robot suspension."
+    },
+    {
+      "id": "stepper_motor_fr",
+      "name": "NEMA23 Stepper Motor (Front Right)",
+      "type": "actuator",
+      "description": "Drives cable for robot suspension."
+    },
+    {
+      "id": "stepper_motor_bl",
+      "name": "NEMA23 Stepper Motor (Back Left)",
+      "type": "actuator",
+      "description": "Drives cable for robot suspension."
+    },
+    {
+      "id": "stepper_motor_br",
+      "name": "NEMA23 Stepper Motor (Back Right)",
+      "type": "actuator",
+      "description": "Drives cable for robot suspension."
+    },
+    {
+      "id": "motor_controller_box",
+      "name": "4-Axis Stepper Driver Box",
+      "type": "module",
+      "description": "Houses stepper drivers, breakout board, and emergency stop button. Connected to PC via motion controller card."
+    },
+    {
+      "id": "e_stop_button",
+      "name": "Emergency Stop Button",
+      "type": "other",
+      "description": "Physical E-Stop integrated into motor controller box, with safety interlock."
+    },
+    {
+      "id": "force_sensor_fl",
+      "name": "Inline Force Sensor (FL, 500N)",
+      "type": "sensor",
+      "description": "Measures tension in the front-left suspension cable."
+    },
+    {
+      "id": "force_sensor_fr",
+      "name": "Inline Force Sensor (FR, 500N)",
+      "type": "sensor",
+      "description": "Measures tension in the front-right suspension cable."
+    },
+    {
+      "id": "force_sensor_bl",
+      "name": "Inline Force Sensor (BL, 500N)",
+      "type": "sensor",
+      "description": "Measures tension in the back-left suspension cable."
+    },
+    {
+      "id": "force_sensor_br",
+      "name": "Inline Force Sensor (BR, 500N)",
+      "type": "sensor",
+      "description": "Measures tension in the back-right suspension cable."
+    },
+    {
+      "id": "load_cell_amplifier",
+      "name": "4-Channel Load Cell Amplifier (HX711/Analog)",
+      "type": "module",
+      "description": "Amplifies signals from force sensors for ADC conversion."
+    },
+    {
+      "id": "adc_module",
+      "name": "High-Resolution ADC Module",
+      "type": "module",
+      "description": "Converts analog force sensor signals to digital for the control PC."
+    },
+    {
+      "id": "aluminum_frame",
+      "name": "80/20 Aluminum Extrusion Frame (6x6x3m)",
+      "type": "other",
+      "description": "Main structural frame for the suspension system."
+    },
+    {
+      "id": "pulley_system",
+      "name": "Cable Pulley & Guide System",
+      "type": "other",
+      "description": "Directs cables from motors to robot harness, minimizing friction."
+    },
+    {
+      "id": "cable_tensioners",
+      "name": "Automatic Cable Tensioners",
+      "type": "other",
+      "description": "Maintains optimal cable tension and prevents slack."
+    },
+    {
+      "id": "robot_harness",
+      "name": "Robot Harness with Magnetic Breakaway",
+      "type": "other",
+      "description": "Connects robot to suspension cables with safety release."
+    },
+    {
+      "id": "suspension_cables",
+      "name": "High-Strength Dyneema Cables",
+      "type": "other",
+      "description": "Connects motors via pulleys to the robot harness."
+    },
+    {
+      "id": "safety_netting",
+      "name": "Perimeter Safety Netting",
+      "type": "other",
+      "description": "Protects area around the suspension system."
+    },
+    {
+      "id": "floor_padding",
+      "name": "High-Density Floor Padding",
+      "type": "other",
+      "description": "Provides impact absorption in case of robot fall."
+    },
+    {
+      "id": "power_dist_box",
+      "name": "AC Power Distribution Box",
+      "type": "power",
+      "description": "Distributes 110V AC to all power supply units."
+    },
+    {
+      "id": "motor_psu_1",
+      "name": "Stepper Motor Power Supply (48V/10A)",
+      "type": "power",
+      "description": "Powers two NEMA23 stepper motors."
+    },
+    {
+      "id": "motor_psu_2",
+      "name": "Stepper Motor Power Supply (48V/10A)",
+      "type": "power",
+      "description": "Powers two NEMA23 stepper motors."
+    },
+    {
+      "id": "pc_psu",
+      "name": "Control PC Power Supply",
+      "type": "power",
+      "description": "Standard ATX PSU for the industrial PC."
+    },
+    {
+      "id": "sensor_psu",
+      "name": "5V/12V DC Power Supply (Sensors)",
+      "type": "power",
+      "description": "Provides stable power to force sensors and amplifiers."
+    },
+    {
+      "id": "motion_control_card",
+      "name": "PCIe Motion Control Card",
+      "type": "module",
+      "description": "High-speed interface between control PC and stepper drivers."
+    }
+  ],
+  "links": [
+    {
+      "source": "power_dist_box",
+      "target": "motor_psu_1",
+      "type": "power",
+      "label": "110V AC"
+    },
+    {
+      "source": "power_dist_box",
+      "target": "motor_psu_2",
+      "type": "power",
+      "label": "110V AC"
+    },
+    {
+      "source": "power_dist_box",
+      "target": "pc_psu",
+      "type": "power",
+      "label": "110V AC"
+    },
+    {
+      "source": "power_dist_box",
+      "target": "sensor_psu",
+      "type": "power",
+      "label": "110V AC"
+    },
+    {
+      "source": "motor_psu_1",
+      "target": "motor_controller_box",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "motor_psu_2",
+      "target": "motor_controller_box",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_fl",
+      "type": "data",
+      "label": "Step/Dir"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_fr",
+      "type": "data",
+      "label": "Step/Dir"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_bl",
+      "type": "data",
+      "label": "Step/Dir"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_br",
+      "type": "data",
+      "label": "Step/Dir"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_fl",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_fr",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_bl",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "motor_controller_box",
+      "target": "stepper_motor_br",
+      "type": "power",
+      "label": "48V DC"
+    },
+    {
+      "source": "control_pc",
+      "target": "motion_control_card",
+      "type": "data",
+      "label": "PCIe Bus"
+    },
+    {
+      "source": "motion_control_card",
+      "target": "motor_controller_box",
+      "type": "data",
+      "label": "Parallel Port/Encoder In"
+    },
+    {
+      "source": "sensor_psu",
+      "target": "load_cell_amplifier",
+      "type": "power",
+      "label": "5V/12V DC"
+    },
+    {
+      "source": "force_sensor_fl",
+      "target": "load_cell_amplifier",
+      "type": "data",
+      "label": "Analog Signal"
+    },
+    {
+      "source": "force_sensor_fr",
+      "target": "load_cell_amplifier",
+      "type": "data",
+      "label": "Analog Signal"
+    },
+    {
+      "source": "force_sensor_bl",
+      "target": "load_cell_amplifier",
+      "type": "data",
+      "label": "Analog Signal"
+    },
+    {
+      "source": "force_sensor_br",
+      "target": "load_cell_amplifier",
+      "type": "data",
+      "label": "Analog Signal"
+    },
+    {
+      "source": "load_cell_amplifier",
+      "target": "adc_module",
+      "type": "data",
+      "label": "Analog Output"
+    },
+    {
+      "source": "adc_module",
+      "target": "control_pc",
+      "type": "data",
+      "label": "USB/PCIe/Ethernet"
+    },
+    {
+      "source": "e_stop_button",
+      "target": "motor_controller_box",
+      "type": "data",
+      "label": "Safety Interlock"
+    },
+    {
+      "source": "e_stop_button",
+      "target": "motor_psu_1",
+      "type": "power",
+      "label": "Power Cut"
+    },
+    {
+      "source": "e_stop_button",
+      "target": "motor_psu_2",
+      "type": "power",
+      "label": "Power Cut"
+    }
+  ],
+  "bom": [
+    {
+      "name": "Industrial Control PC (Mini-ITX, 16GB RAM, SSD)",
+      "quantity": 1,
+      "estimatedCost": 1500,
+      "purchaseUrl": "https://www.advantech.com/products/industrial-computing-systems",
+      "description": "High-performance PC for real-time control, running LinuxCNC or similar.",
+      "amazonUrl": "https://www.amazon.com/s?k=Industrial%20Control%20PC%20(Mini-ITX%2C%2016GB%20RAM%2C%20SSD)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "PCIe Motion Control Card (e.g., Mesa 7I76E/7I76)",
+      "quantity": 1,
+      "estimatedCost": 350,
+      "purchaseUrl": "https://mesanet.com/index.html",
+      "description": "High-speed interface for stepper drivers and I/O.",
+      "amazonUrl": "https://www.amazon.com/s?k=PCIe%20Motion%20Control%20Card%20(e.g.%2C%20Mesa%207I76E%2F7I76)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "NEMA23 Stepper Motor (3.0Nm, 4.2A)",
+      "quantity": 4,
+      "estimatedCost": 240,
+      "purchaseUrl": "https://www.omc-stepperonline.com/nema-23-stepper-motor",
+      "description": "High-torque stepper motors for cable winding.",
+      "amazonUrl": "https://www.amazon.com/s?k=NEMA23%20Stepper%20Motor%20(3.0Nm%2C%204.2A)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Closed-Loop Stepper Driver (e.g., Leadshine HBS57)",
+      "quantity": 4,
+      "estimatedCost": 400,
+      "purchaseUrl": "https://www.leadshine.com/products/hybrid-servo-easy-servo-drives/",
+      "description": "High-performance drivers for NEMA23 motors, with encoder feedback.",
+      "amazonUrl": "https://www.amazon.com/s?k=Closed-Loop%20Stepper%20Driver%20(e.g.%2C%20Leadshine%20HBS57)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "80/20 Aluminum Extrusion (40x80mm, 3m lengths)",
+      "quantity": 12,
+      "estimatedCost": 1200,
+      "purchaseUrl": "https://www.8020.net/store/parts",
+      "description": "Heavy-duty frame for 6x6m footprint and 3m height.",
+      "amazonUrl": "https://www.amazon.com/s?k=80%2F20%20Aluminum%20Extrusion%20(40x80mm%2C%203m%20lengths)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "80/20 Aluminum Extrusion Connectors & Fasteners",
+      "quantity": 1,
+      "estimatedCost": 300,
+      "purchaseUrl": "https://www.8020.net/store/parts",
+      "description": "For assembling the modular frame.",
+      "amazonUrl": "https://www.amazon.com/s?k=80%2F20%20Aluminum%20Extrusion%20Connectors%20%26%20Fasteners&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Inline Force Sensor (S-Type Load Cell, 500N)",
+      "quantity": 4,
+      "estimatedCost": 200,
+      "purchaseUrl": "https://www.sparkfun.com/categories/136",
+      "description": "Measures cable tension, 500N (approx 50kg) capacity.",
+      "amazonUrl": "https://www.amazon.com/s?k=Inline%20Force%20Sensor%20(S-Type%20Load%20Cell%2C%20500N)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "HX711 Load Cell Amplifier (with 24-bit ADC)",
+      "quantity": 4,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.sparkfun.com/products/13230",
+      "description": "Amplifies and digitizes load cell signals. Can be replaced by a single multi-channel industrial ADC.",
+      "amazonUrl": "https://www.amazon.com/s?k=HX711%20Load%20Cell%20Amplifier%20(with%2024-bit%20ADC)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "High-Strength Dyneema Cable (2mm, 50m roll)",
+      "quantity": 2,
+      "estimatedCost": 100,
+      "purchaseUrl": "https://www.amazon.com/Dyneema-Spearfishing-Dacron-Durable-Strength/dp/B08V5Q8NLT",
+      "description": "Strong, lightweight cable for suspension system.",
+      "amazonUrl": "https://www.amazon.com/s?k=High-Strength%20Dyneema%20Cable%20(2mm%2C%2050m%20roll)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Stainless Steel Pulleys (low friction, bearing type)",
+      "quantity": 8,
+      "estimatedCost": 80,
+      "purchaseUrl": "https://www.mcmaster.com/pulleys",
+      "description": "For smooth cable routing at each corner and along frame.",
+      "amazonUrl": "https://www.amazon.com/s?k=Stainless%20Steel%20Pulleys%20(low%20friction%2C%20bearing%20type)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Custom Cable Guides & Tensioners (3D Printed/Machined)",
+      "quantity": 1,
+      "estimatedCost": 150,
+      "purchaseUrl": "https://www.mcmaster.com/cable-guides",
+      "description": "To be designed/fabricated based on final cable path. Budget for materials/service.",
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%20Cable%20Guides%20%26%20Tensioners%20(3D%20Printed%2FMachined)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Robot Harness (Customizable, Nylon Webbing)",
+      "quantity": 1,
+      "estimatedCost": 50,
+      "purchaseUrl": "https://www.amazon.com/Nylon-Webbing-Heavy-Strap-Black/dp/B07R4S25B2",
+      "description": "Adjustable harness to attach to robot.",
+      "amazonUrl": "https://www.amazon.com/s?k=Robot%20Harness%20(Customizable%2C%20Nylon%20Webbing)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Heavy-Duty Magnetic Breakaway Connectors (50kg pull force)",
+      "quantity": 4,
+      "estimatedCost": 120,
+      "purchaseUrl": "https://www.kjmagnetics.com/categories.asp?cat=2",
+      "description": "Safety release mechanism for robot harness.",
+      "amazonUrl": "https://www.amazon.com/s?k=Heavy-Duty%20Magnetic%20Breakaway%20Connectors%20(50kg%20pull%20force)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Steel Enclosure (for Motor Controller Box)",
+      "quantity": 1,
+      "estimatedCost": 80,
+      "purchaseUrl": "https://www.hammondmfg.com/enclosures/steel",
+      "description": "Secure housing for stepper drivers and control electronics.",
+      "amazonUrl": "https://www.amazon.com/s?k=Steel%20Enclosure%20(for%20Motor%20Controller%20Box)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Large Emergency Stop Button (latching)",
+      "quantity": 1,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.adafruit.com/product/3429",
+      "description": "Prominent, easily accessible safety button.",
+      "amazonUrl": "https://www.amazon.com/s?k=Large%20Emergency%20Stop%20Button%20(latching)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "AC Power Distribution Unit (PDU, 8 outlets)",
+      "quantity": 1,
+      "estimatedCost": 50,
+      "purchaseUrl": "https://www.amazon.com/APC-Rack-Mountable-Power-Distribution-AP9562/dp/B00006B7S3",
+      "description": "Provides centralized power for all AC components.",
+      "amazonUrl": "https://www.amazon.com/s?k=AC%20Power%20Distribution%20Unit%20(PDU%2C%208%20outlets)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "48V 10A Switching Power Supply (for motors)",
+      "quantity": 2,
+      "estimatedCost": 100,
+      "purchaseUrl": "https://www.meanwell-usa.com/product/switching-power-supply-rsp-series-rsp-400-48/",
+      "description": "Powers two NEMA23 stepper motors each (2 supplies for 4 motors).",
+      "amazonUrl": "https://www.amazon.com/s?k=48V%2010A%20Switching%20Power%20Supply%20(for%20motors)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "5V 5A DC Power Supply (for sensors/logic)",
+      "quantity": 1,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.adafruit.com/product/2763",
+      "description": "Powers load cell amplifiers and other low-voltage components.",
+      "amazonUrl": "https://www.amazon.com/s?k=5V%205A%20DC%20Power%20Supply%20(for%20sensors%2Flogic)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Safety Netting (Dyneema or Nylon, 3x3m sections)",
+      "quantity": 8,
+      "estimatedCost": 400,
+      "purchaseUrl": "https://www.google.com/search?q=industrial+safety+netting+per+meter",
+      "description": "Modular sections to create a perimeter safety barrier.",
+      "amazonUrl": "https://www.amazon.com/s?k=Safety%20Netting%20(Dyneema%20or%20Nylon%2C%203x3m%20sections)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "High-Density Foam Floor Mats (1m x 1m, 2cm thick)",
+      "quantity": 36,
+      "estimatedCost": 540,
+      "purchaseUrl": "https://www.amazon.com/ProSource-Exercise-Puzzle-Interlocking-Tiles/dp/B073R5X2V7",
+      "description": "Covers 6x6m area for crash protection.",
+      "amazonUrl": "https://www.amazon.com/s?k=High-Density%20Foam%20Floor%20Mats%20(1m%20x%201m%2C%202cm%20thick)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Industrial Grade Ethernet Cables",
+      "quantity": 3,
+      "estimatedCost": 30,
+      "purchaseUrl": "https://www.mcmaster.com/ethernet-cables/industrial-ethernet-cables/",
+      "description": "For robust PC to motion controller connection and network access.",
+      "amazonUrl": "https://www.amazon.com/s?k=Industrial%20Grade%20Ethernet%20Cables&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Various Gauge Wiring (for power & signal)",
+      "quantity": 1,
+      "estimatedCost": 50,
+      "purchaseUrl": "https://www.mcmaster.com/wire/stranded-hookup-wire/",
+      "description": "Internal wiring for motor controller box and sensor connections.",
+      "amazonUrl": "https://www.amazon.com/s?k=Various%20Gauge%20Wiring%20(for%20power%20%26%20signal)&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "name": "Cable Glands / Strain Relief",
+      "quantity": 1,
+      "estimatedCost": 20,
+      "purchaseUrl": "https://www.mcmaster.com/cable-glands/",
+      "description": "For professional cable entry/exit from enclosures.",
+      "amazonUrl": "https://www.amazon.com/s?k=Cable%20Glands%20%2F%20Strain%20Relief&linkCode=ll2&tag=3e8hardware-20&linkId=b049939c12f7a0c48dbd780d190c09ed&language=en_US&ref_=as_li_ss_tl"
+    }
+  ],
+  "approach": "## Component Configuration\n* Control PC: Install a real-time Linux distribution (e.g., Ubuntu with PREEMPT_RT kernel or a dedicated LinuxCNC distribution). Configure the PCIe motion control card drivers. Develop custom Python/C++ code for the high-speed servo loop (PID control based on motor encoders and force sensor feedback).\n* NEMA23 Stepper Motors: Pair each motor with a closed-loop stepper driver (e.g., Leadshine HBS57). Configure drivers for appropriate current and microstepping. Mount motors at the top corners of the aluminum frame. Use encoder feedback from the closed-loop drivers to the motion control card for precise position tracking.\n* Motor Controller Box: House the four stepper drivers, a common breakout board, and the emergency stop circuit. Wire the Step/Direction/Enable signals from the motion control card to each driver. Connect 48V DC power from two dedicated PSUs. The E-stop should cut power to the motor drivers and potentially the 48V PSUs directly for safety.\n* Inline Force Sensors: Integrate each 500N S-type load cell directly into each of the four suspension cables, ensuring they are always under tension. Connect each load cell to a dedicated HX711 amplifier breakout board. Mount these amplifiers in a small, shielded enclosure near the control PC or within the main motor controller box.\n* ADC Module: If using separate HX711 boards, connect their digital outputs (DATA, CLK) to GPIO pins on a Raspberry Pi or an industrial ADC module that communicates with the Control PC via USB, SPI, or Ethernet. Ensure high-speed, synchronized readings.\n* 80/20 Aluminum Extrusion Frame: Assemble the frame in a 6m x 6m square, with 3m tall corner posts and horizontal crossbeams at the top. Design for modularity to allow disassembly. Ensure all joints are robust and load-bearing.\n* Cable System: Each NEMA23 motor will have a spool or capstan. The Dyneema cables will unwind/wind from these spools. Route each cable through a series of low-friction pulleys mounted on the aluminum frame, leading downwards to the center of the arena. Integrate the inline force sensors and automatic tensioners (e.g., spring-loaded or counter-weighted) into each cable path.\n* Robot Harness: Design a lightweight, custom harness that securely attaches to the aerial robot at multiple points. Integrate four magnetic breakaway connectors, one for each suspension cable. The magnets should be strong enough to hold the robot during normal operation but release under excessive force or intentional manual override.\n\n## Mechanical Integration\n* Frame Assembly: The 80/20 aluminum extrusion frame will be assembled using T-nuts and angle brackets. Design the frame in modular sections (e.g., 2m or 3m segments) that can be easily bolted together and disassembled for transport. Ensure corner posts are securely anchored to the ground or weighted for stability.\n* Motor Mounting: Mount NEMA23 motors at each of the four top corners of the 6x6m frame. Use robust motor mounts designed for 80/20 extrusion. Ensure motor shafts are aligned with initial cable paths.\n* Pulley & Cable Routing: Install bearing-equipped pulleys at critical points to guide the Dyneema cables from the motor spools down to the central robot harness attachment point. Minimize cable bending radius and friction. Integrate the force sensors in a way that the cable tension is directly measured.\n* Cable Tensioners: Design and integrate mechanical (e.g., spring-loaded) or smart (motor-controlled) cable tensioners to prevent slack and maintain even tension across all four cables, crucial for stability and safety.\n* Robot Harness: Fabricate a custom harness from durable nylon webbing or similar material, tailored to the robot's dimensions. Integrate the four magnetic breakaway connectors at the top, where the suspension cables attach. Ensure the harness balances the robot's weight evenly.\n* Motor Controller Box: Mount the steel enclosure in a safe, accessible location near the control PC. Ensure proper ventilation for the stepper drivers. All high-voltage connections should be professionally terminated.\n* Safety Netting: Erect modular safety netting around the entire 6x6m perimeter of the suspension system frame. This netting should be at least 3m high to catch a falling robot or prevent accidental contact. It should be easily attachable/detachable for setup/teardown.\n* Floor Padding: Lay high-density foam mats across the entire 6x6m footprint of the arena. These mats should interlock and be thick enough (at least 2cm) to absorb impact in case of a robot crash, protecting both the robot and the floor.\n\n## Assembly Logic\n* Step 1: Assemble the 80/20 aluminum extrusion frame. Start with the base, then the 3m corner posts, and finally the top crossbeams. Ensure all connections are tightened securely. The frame must be perfectly level and square.\n* Step 2: Mount the NEMA23 stepper motors at each of the four top corners of the frame. Install the motor controller box in its designated location, run power and signal cables to each motor.\n* Step 3: Route the Dyneema cables from each motor's spool, through the pulley system, incorporating the inline force sensors and cable tensioners. Each cable should lead to a central point above the arena.\n* Step 4: Assemble the robot harness and attach the magnetic breakaway connectors. Connect the four suspension cables to these connectors.\n* Step 5: Install the AC power distribution box. Connect the 48V motor power supplies, the control PC's PSU, and the sensor/logic PSUs to the PDU. Then connect the PDU to a wall outlet (ensure adequate circuit capacity).\n* Step 6: Connect the 48V motor PSUs to the motor controller box. Connect the 5V/12V sensor PSU to the load cell amplifiers and any other low-voltage logic.\n* Step 7: Install the control PC and the PCIe motion control card. Connect the motion control card to the motor controller box (e.g., via parallel port breakout cable) and the ADC module to the control PC (e.g., USB or Ethernet).\n* Step 8: Wire the force sensors to the load cell amplifiers, and the amplifiers to the ADC module.\n* Step 9: Install the emergency stop button on the motor controller box, ensuring it directly cuts power to the motor PSUs and sends a safety signal to the motion controller.\n* Step 10: Lay out the high-density foam floor padding across the entire 6x6m arena area.\n* Step 11: Erect and secure the perimeter safety netting around the entire frame.\n* Step 12: Install the real-time OS and LinuxCNC (or equivalent) on the control PC. Configure the motion control card and develop/load the servo control loop software.\n* Step 13: Power up all systems. Perform initial calibration of force sensors and motor encoder positions. Test E-stop functionality thoroughly before any robot testing.\n* Step 14: Carefully attach the aerial robot to the harness and perform controlled, slow initial movements and safety checks. Debug the servo loop for stability and accuracy.\n* Step 15: For transport, reverse the assembly steps: detach netting, remove floor padding, disassemble cable system, remove motors and electronics, and then disassemble the modular 80/20 frame sections. Pack components into labeled cases/bins.",
+  "projectName": "Aerial Robot Suspension System"
+}

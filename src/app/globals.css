@@ -1,0 +1,458 @@
+@import "tailwindcss";
+
+/* TX-02 Font Family */
+@font-face {
+    font-family: 'TX-02';
+    src: url('/fonts/TX-02-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TX-02';
+    src: url('/fonts/TX-02-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TX-02';
+    src: url('/fonts/TX-02-Oblique.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TX-02';
+    src: url('/fonts/TX-02-Bold-Oblique.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+/* MonoLisa Font Family */
+@font-face {
+    font-family: 'MonoLisa';
+    src: url('/fonts/MonoLisa-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MonoLisa';
+    src: url('/fonts/MonoLisa-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Victor Mono Font Family */
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* JMH Arkham Font */
+@font-face {
+    font-family: 'JMH Arkham';
+    src: url('/fonts/jmh-arkham.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* URANIUM Font */
+@font-face {
+    font-family: 'URANIUM';
+    src: url('/fonts/uranium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Anime Ace BB Font Family */
+@font-face {
+    font-family: 'Anime Ace BB';
+    src: url('/fonts/animeace2_reg.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anime Ace BB';
+    src: url('/fonts/animeace2_bld.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anime Ace BB';
+    src: url('/fonts/animeace2_ital.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ============================================================
+   COLOR SYSTEM - arenaOS
+   ============================================================ */
+:root {
+    --color-bg: #faf9f7;
+    --color-surface: #f5f4f1;
+    --color-border: #c9c5bb;
+    --color-text: #0a0a0a;
+    --color-muted: #666666;
+    --color-accent: #4a7aaa;
+    --color-accent-strong: #3a5a7a;
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(26, 26, 26, 0.12);
+    --glass-shadow: 0 20px 52px -34px rgba(26, 26, 26, 0.2);
+    --brand-glow: 0 0 16px rgba(74, 122, 170, 0.15);
+    --marble-bg: url(/textures/eden-marble.png);
+    --shell-edge-top: 80px;
+    --shell-edge-bottom: 60px;
+    --shell-edge-left: 180px;
+}
+
+:root[data-theme-mode="dark"] {
+    --color-bg: #1e2330;
+    --color-surface: #262b33;
+    --color-border: #323843;
+    --color-text: #e3e9f4;
+    --color-muted: #9ba7ba;
+    --color-accent: #6b9dd1;
+    --color-accent-strong: #7fb2ff;
+    --glass-bg: rgba(38, 43, 51, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --brand-glow: 0 0 16px rgba(107, 157, 209, 0.25);
+    --marble-bg: url(/textures/eden-marble-dark.png);
+}
+
+/* ============================================================
+   SHELL FRAME - Marble edges
+   ============================================================ */
+.shell-top,
+.shell-bottom,
+.shell-left {
+    background-image: var(--marble-bg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* ============================================================
+   CARBON CONTENT AREA - Main inner section
+   ============================================================ */
+.carbon-content {
+    position: relative;
+    background: #faf9f7;
+    /* Rounded on left (top-left, bottom-left), flat on right */
+    border-radius: 24px 0 0 24px;
+    color: #0f172a;
+    box-shadow:
+        inset 0 10px 24px rgba(0, 0, 0, 0.12),
+        inset 0 -8px 20px rgba(0, 0, 0, 0.08),
+        inset 12px 0 24px rgba(0, 0, 0, 0.10);
+}
+
+/* Sharp diagonal carbon fiber pattern */
+.carbon-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: repeating-linear-gradient(135deg,
+            rgba(0, 0, 0, 0.06) 0px,
+            rgba(0, 0, 0, 0.06) 1px,
+            transparent 1px,
+            transparent 4px);
+    background-size: 6px 6px;
+}
+
+/* Subtle inner glow */
+.carbon-content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode carbon */
+:root[data-theme-mode="dark"] .carbon-content {
+    background: #1e2330;
+    color: #e3e9f4;
+    box-shadow:
+        inset 0 12px 28px rgba(0, 0, 0, 0.35),
+        inset 0 -10px 24px rgba(0, 0, 0, 0.25),
+        inset 14px 0 28px rgba(0, 0, 0, 0.30);
+}
+
+:root[data-theme-mode="dark"] .carbon-content::before {
+    opacity: 0.3;
+    background-image: repeating-linear-gradient(135deg,
+            rgba(255, 255, 255, 0.04) 0px,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px,
+            transparent 4px);
+}
+
+:root[data-theme-mode="dark"] .carbon-content::after {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   LIQUID GLASS CARDS - Raycast/macOS frosted glass style
+   ============================================================ */
+.glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glass card scrollbar styling */
+.glass-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.glass-card::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 12px 0;
+    /* Push track away from rounded corners */
+}
+
+.glass-card::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.glass-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+    background-clip: padding-box;
+}
+
+/* Dark mode scrollbar */
+:root[data-theme-mode="dark"] .glass-card::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    background-clip: padding-box;
+}
+
+:root[data-theme-mode="dark"] .glass-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+    background-clip: padding-box;
+}
+
+/* Liquid highlight sweep */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(255, 255, 255, 0.1) 60%,
+            transparent 100%);
+    border-radius: 16px 16px 0 0;
+    pointer-events: none;
+}
+
+/* Dark mode liquid glass */
+:root[data-theme-mode="dark"] .glass-card {
+    background: rgba(38, 43, 51, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme-mode="dark"] .glass-card::before {
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(255, 255, 255, 0.02) 40%,
+            transparent 100%);
+}
+
+/* Desktop card sizing for horizontal scroll */
+@media (min-width: 1024px) {
+    .carbon-content .glass-card {
+        height: calc(100% - 4rem) !important;
+        margin: 2rem !important;
+    }
+}
+
+/* ============================================================
+   BODY & SCROLLBARS
+   ============================================================ */
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'MonoLisa', 'Victor Mono', 'JMH Arkham', 'URANIUM', 'Anime Ace BB', 'TX-02', 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+/* Override Tailwind font-mono to use MonoLisa */
+.font-mono {
+    font-family: 'MonoLisa', 'Victor Mono', monospace !important;
+}
+
+/* Force no italics anywhere */
+*,
+*::before,
+*::after {
+    font-style: normal !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ============================================================
+   SCROLLBARS - Custom styled
+   ============================================================ */
+/* Hide horizontal scrollbar on carbon-content - FORCE */
+.carbon-content::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.carbon-content::-webkit-scrollbar-track {
+    display: none !important;
+}
+
+.carbon-content::-webkit-scrollbar-thumb {
+    display: none !important;
+}
+
+/* Firefox - hide horizontal scrollbar */
+.carbon-content {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+/* Vertical scrollbars in panels - CUSTOM OVERLAY STYLE */
+.glass-card {
+    scrollbar-width: auto !important;
+    scrollbar-color: #6b9dd1 rgba(255, 255, 255, 0.1) !important;
+    overflow-y: scroll !important;
+    /* Force scrollbar to always show */
+    overflow-x: hidden !important;
+    pointer-events: auto !important;
+}
+
+.glass-card::-webkit-scrollbar {
+    width: 14px !important;
+    height: 14px !important;
+    cursor: pointer !important;
+}
+
+.glass-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
+    cursor: pointer !important;
+}
+
+.glass-card::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6b9dd1, #4a7aaa) !important;
+    border-radius: 10px !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 8px rgba(107, 157, 209, 0.4) !important;
+    cursor: grab !important;
+}
+
+.glass-card::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7baddb, #5a8aba) !important;
+    box-shadow: 0 2px 12px rgba(107, 157, 209, 0.6) !important;
+}
+
+.glass-card::-webkit-scrollbar-thumb:active {
+    cursor: grabbing !important;
+}
+
+/* General scrollbar for other elements */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+    background-clip: content-box;
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: white;
+}
