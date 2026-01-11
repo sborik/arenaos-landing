@@ -58,14 +58,14 @@ export default function MusicPlayer({ darkMode }: MusicPlayerProps) {
                 backgroundImage: `url(${darkMode ? '/textures/eden-marble-dark.png' : '/textures/eden-marble.png'})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                padding: '3px',
+                padding: '5px',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.25)'
             }}>
 
             <div
                 className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
                 style={{
-                    backgroundColor: darkMode ? 'rgba(30,30,30,0.95)' : 'rgba(255,255,255,0.95)',
+                    backgroundColor: darkMode ? 'rgba(20,20,20,0.85)' : 'rgba(255,255,255,0.85)',
                     backdropFilter: 'blur(8px)'
                 }}>
 
