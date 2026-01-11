@@ -54,6 +54,7 @@ export default function Home() {
     const [activeBOMTier, setActiveBOMTier] = useState(0)
     const [darkMode, setDarkMode] = useState(true)
     const [scrollProgress, setScrollProgress] = useState(0)
+    const [showMusic, setShowMusic] = useState(false)
     const scrollRef = useRef<HTMLElement>(null)
 
     // Scroll to section within the horizontal scroll container
@@ -710,6 +711,37 @@ export default function Home() {
             </div>
             {/* Software Architecture Modal */}
             {/* Removed in favor of CoreStackPanel */}
+
+            {/* Floating Music Player */}
+            <div className="fixed bottom-6 right-6 z-50">
+                {showMusic && (
+                    <div className="mb-3 rounded-xl overflow-hidden shadow-2xl"
+                        style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+                        <iframe
+                            src="https://open.spotify.com/embed/track/1T4lPfwh8KfUL5shueHil4?utm_source=generator&theme=0"
+                            width="300"
+                            height="80"
+                            frameBorder="0"
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"
+                            style={{ borderRadius: '12px' }}
+                        />
+                    </div>
+                )}
+                <button
+                    onClick={() => setShowMusic(!showMusic)}
+                    className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                    style={{
+                        backgroundColor: showMusic ? '#1DB954' : 'var(--color-surface)',
+                        border: '1px solid var(--color-border)',
+                        color: showMusic ? '#fff' : 'var(--color-text)'
+                    }}
+                    title={showMusic ? 'Hide music' : 'Play music'}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     )
 }
