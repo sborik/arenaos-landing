@@ -220,7 +220,7 @@ export default function Home() {
                                 />
                             )}
 
-                            <div className="relative z-10 flex flex-col lg:flex-row h-auto lg:h-full p-4 lg:p-0 gap-4 lg:gap-0">
+                            <div className="relative z-10 flex flex-col lg:flex-row h-auto lg:h-full p-4 lg:p-0 lg:pl-8 gap-4 lg:gap-0">
 
                                 {/* MERGED HERO & SPECS PANEL */}
                                 <motion.section
