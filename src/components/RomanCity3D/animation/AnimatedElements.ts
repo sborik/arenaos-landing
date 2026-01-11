@@ -157,7 +157,7 @@ export class WavingFlag {
 export class SmokeParticle {
     public x: number
     public y: number
-    private startY: number
+    public startY: number
     public opacity: number = 1
     public radius: number
 

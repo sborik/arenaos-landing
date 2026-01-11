@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-const ProceduralRomanCity = dynamic(() => import('@/components/RomanCity3D/ProceduralScene'), { ssr: false })
+const ProceduralRomanCity = dynamic(() => import('@/components/RomanCity3D/Scene'), { ssr: false })
 
 export default function EcosystemPage() {
     return (

@@ -107,15 +107,13 @@ export default function Forum({
                 <bufferGeometry>
                     <bufferAttribute
                         attach="attributes-position"
-                        count={100}
-                        array={new Float32Array(
+                        args={[new Float32Array(
                             Array.from({ length: 100 }, () => [
                                 (Math.random() - 0.5) * 40,
                                 Math.random() * 15,
                                 (Math.random() - 0.5) * 40
                             ]).flat()
-                        )}
-                        itemSize={3}
+                        ), 3]}
                     />
                 </bufferGeometry>
                 <pointsMaterial
