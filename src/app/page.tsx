@@ -713,14 +713,15 @@ export default function Home() {
             {/* Software Architecture Modal */}
             {/* Removed in favor of CoreStackPanel */}
 
-            {/* Fixed Music Card - Marble styled */}
-            <div className="fixed bottom-6 right-6 z-50 rounded-2xl overflow-hidden shadow-2xl"
+            {/* Fixed Music Card - Marble styled with eden-marble texture */}
+            <div
+                className="fixed bottom-4 right-4 z-50 rounded-2xl overflow-hidden shadow-2xl"
                 style={{
-                    backgroundImage: 'var(--marble-bg)',
+                    backgroundImage: `url(${darkMode ? '/textures/eden-marble-dark.png' : '/textures/eden-marble.png'})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    border: '1px solid var(--glass-border)',
-                    padding: '4px'
+                    padding: '6px',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
                 }}>
                 <iframe
                     src="https://open.spotify.com/embed/track/1T4lPfwh8KfUL5shueHil4?utm_source=generator&theme=0"
@@ -729,7 +730,7 @@ export default function Home() {
                     frameBorder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"
-                    style={{ borderRadius: '12px' }}
+                    style={{ borderRadius: '12px', display: 'block' }}
                 />
             </div>
         </div>
