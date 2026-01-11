@@ -282,7 +282,7 @@ export default function Home() {
                                     transition={{ duration: 0.6 }}>
                                     <h2 className="text-xl font-bold mb-2 uppercase tracking-wide"
                                         style={{ color: 'var(--color-text)' }}>
-                                        Built on ToddlerBot
+                                        Hardware: ToddlerBot
                                     </h2>
                                     <p className="text-sm mb-6" style={{ color: 'var(--color-muted)' }}>
                                         Open-source humanoid platform from Stanford
