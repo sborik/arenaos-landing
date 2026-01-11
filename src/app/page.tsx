@@ -643,13 +643,14 @@ export default function Home() {
                                     if (scrollRef.current) {
                                         // Card width (600px) + margin (64px from CSS)
                                         const panelWidth = 600 + 64;
-                                        const leftPadding = 24; // pl-6 = 24px
+                                        const leftOffset = 48; // Extra padding from left edge
                                         const currentScroll = scrollRef.current.scrollLeft;
                                         // Calculate which panel we're on and go to the previous one
-                                        const currentPanel = Math.round((currentScroll) / panelWidth);
+                                        const currentPanel = Math.round((currentScroll - leftOffset) / panelWidth);
                                         const targetPanel = Math.max(0, currentPanel - 1);
+                                        const targetScroll = targetPanel === 0 ? 0 : (targetPanel * panelWidth) + leftOffset;
                                         scrollRef.current.scrollTo({
-                                            left: targetPanel * panelWidth,
+                                            left: targetScroll,
                                             behavior: 'smooth'
                                         });
                                     }
@@ -683,12 +684,13 @@ export default function Home() {
                                     if (scrollRef.current) {
                                         // Card width (600px) + margin (64px from CSS)
                                         const panelWidth = 600 + 64;
+                                        const leftOffset = 48; // Extra padding from left edge
                                         const currentScroll = scrollRef.current.scrollLeft;
                                         const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
                                         // Calculate which panel we're on and go to the next one
-                                        const currentPanel = Math.round((currentScroll) / panelWidth);
+                                        const currentPanel = Math.round((currentScroll - leftOffset) / panelWidth);
                                         const targetPanel = currentPanel + 1;
-                                        const targetScroll = Math.min(maxScroll, targetPanel * panelWidth);
+                                        const targetScroll = Math.min(maxScroll, (targetPanel * panelWidth) + leftOffset);
                                         scrollRef.current.scrollTo({
                                             left: targetScroll,
                                             behavior: 'smooth'
