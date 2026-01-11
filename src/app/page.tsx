@@ -220,12 +220,12 @@ export default function Home() {
                                 />
                             )}
 
-                            <div className="relative z-10 flex flex-col lg:flex-row h-auto lg:h-full p-4 lg:p-0 lg:pl-8 gap-4 lg:gap-0">
+                            <div className="relative z-10 flex flex-col lg:flex-row h-auto lg:h-full p-4 lg:p-0 gap-4 lg:gap-0">
 
                                 {/* MERGED HERO & SPECS PANEL */}
                                 <motion.section
                                     id="hero"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8 lg:ml-8"
                                     style={{
                                         height: 'auto',
                                         minHeight: 'auto',
@@ -273,7 +273,7 @@ export default function Home() {
                                 {/* TODDLERBOT FOUNDATION */}
                                 <motion.section
                                     id="foundation"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -353,7 +353,7 @@ export default function Home() {
                                 {/* GAME MODES */}
                                 <motion.section
                                     id="modes"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -408,7 +408,7 @@ export default function Home() {
 
                                 {/* CORE STACK ARCHITECTURE */}
                                 <motion.section
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -421,7 +421,7 @@ export default function Home() {
                                 {/* PROOF OF CONCEPT */}
                                 <motion.section
                                     id="poc"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]" style={{ height: 'auto', margin: '0' }}
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8" style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
@@ -583,7 +583,7 @@ export default function Home() {
                                 {/* FUNDING TIERS */}
                                 <motion.section
                                     id="tiers"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -641,16 +641,14 @@ export default function Home() {
                             <button
                                 onClick={() => {
                                     if (scrollRef.current) {
-                                        // Card width (600px) + margin (64px from CSS)
-                                        const panelWidth = 600 + 64;
-                                        const leftOffset = 48; // Extra padding from left edge
+                                        // Card width (600px) + left margin (32px)
+                                        const panelWidth = 600 + 32;
                                         const currentScroll = scrollRef.current.scrollLeft;
                                         // Calculate which panel we're on and go to the previous one
-                                        const currentPanel = Math.round((currentScroll - leftOffset) / panelWidth);
+                                        const currentPanel = Math.round(currentScroll / panelWidth);
                                         const targetPanel = Math.max(0, currentPanel - 1);
-                                        const targetScroll = targetPanel === 0 ? 0 : (targetPanel * panelWidth) + leftOffset;
                                         scrollRef.current.scrollTo({
-                                            left: targetScroll,
+                                            left: targetPanel * panelWidth,
                                             behavior: 'smooth'
                                         });
                                     }
@@ -682,15 +680,14 @@ export default function Home() {
                             <button
                                 onClick={() => {
                                     if (scrollRef.current) {
-                                        // Card width (600px) + margin (64px from CSS)
-                                        const panelWidth = 600 + 64;
-                                        const leftOffset = 48; // Extra padding from left edge
+                                        // Card width (600px) + left margin (32px)
+                                        const panelWidth = 600 + 32;
                                         const currentScroll = scrollRef.current.scrollLeft;
                                         const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
                                         // Calculate which panel we're on and go to the next one
-                                        const currentPanel = Math.round((currentScroll - leftOffset) / panelWidth);
+                                        const currentPanel = Math.round(currentScroll / panelWidth);
                                         const targetPanel = currentPanel + 1;
-                                        const targetScroll = Math.min(maxScroll, (targetPanel * panelWidth) + leftOffset);
+                                        const targetScroll = Math.min(maxScroll, targetPanel * panelWidth);
                                         scrollRef.current.scrollTo({
                                             left: targetScroll,
                                             behavior: 'smooth'
