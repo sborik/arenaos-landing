@@ -22,6 +22,17 @@ const TECH_SPECS = [
     { label: 'Safety', value: 'Magnetic bumpers + breakaway joints' },
 ]
 
+const TODDLERBOT_STATS = [
+    { label: 'Robot Cost', value: '<$6,000', detail: '90% motors + compute' },
+    { label: 'Degrees of Freedom', value: '30 DoF', detail: 'Full loco-manipulation' },
+    { label: 'Build Time', value: '3 days', detail: 'Non-expert assembly' },
+    { label: 'Repair Time', value: '35 min', detail: '21min print + 14min build' },
+    { label: 'Onboard Compute', value: '2.5 TFLOPS', detail: 'Jetson Orin NX' },
+    { label: 'Manipulation Success', value: '90%', detail: '60 demos, 20 trials' },
+    { label: 'Sim-to-Real', value: 'Zero-shot', detail: 'High-fidelity digital twin' },
+    { label: 'Policy Transfer', value: 'Cross-instance', detail: 'Standardized competition' },
+]
+
 const TIERS = [
     { tier: '0', name: 'Validation', funding: '$12.5k', time: '2-3 months', output: '2 bots, sumo demo' },
     { tier: '1', name: 'Prototype', funding: '$100k', time: '6 months', output: '10 bots, 3 schools' },
@@ -156,6 +167,13 @@ export default function Home() {
                                     <span>Overview</span>
                                 </button>
                                 <button
+                                    onClick={() => scrollToSection('foundation')}
+                                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition hover:bg-[var(--glass-bg)] hover:backdrop-blur-sm text-left"
+                                    style={{ color: 'var(--color-muted)' }}>
+                                    <IconMicrochip size="20px" />
+                                    <span>ToddlerBot</span>
+                                </button>
+                                <button
                                     onClick={() => scrollToSection('modes')}
                                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition hover:bg-[var(--glass-bg)] hover:backdrop-blur-sm text-left"
                                     style={{ color: 'var(--color-muted)' }}>
@@ -247,6 +265,86 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             ))}
+                                        </div>
+                                    </div>
+                                </motion.section>
+
+                                {/* TODDLERBOT FOUNDATION */}
+                                <motion.section
+                                    id="foundation"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px]"
+                                    style={{ height: 'auto', margin: '0' }}
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}>
+                                    <h2 className="text-xl font-bold mb-2 uppercase tracking-wide"
+                                        style={{ color: 'var(--color-text)' }}>
+                                        Built on ToddlerBot
+                                    </h2>
+                                    <p className="text-sm mb-6" style={{ color: 'var(--color-muted)' }}>
+                                        Open-source humanoid platform from Stanford
+                                    </p>
+
+                                    {/* Stats Grid */}
+                                    <div className="grid grid-cols-2 gap-4 mb-8">
+                                        {TODDLERBOT_STATS.map((stat, i) => (
+                                            <div key={i} className="border-l-2 pl-3 py-1"
+                                                style={{ borderColor: 'var(--color-accent)' }}>
+                                                <div className="text-lg font-mono font-bold"
+                                                    style={{ color: 'var(--color-text)' }}>
+                                                    {stat.value}
+                                                </div>
+                                                <div className="text-xs uppercase tracking-wider"
+                                                    style={{ color: 'var(--color-muted)' }}>
+                                                    {stat.label}
+                                                </div>
+                                                <div className="text-xs mt-0.5"
+                                                    style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
+                                                    {stat.detail}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Academic Papers */}
+                                    <div className="border-t pt-6" style={{ borderColor: 'var(--color-border)' }}>
+                                        <h3 className="text-sm font-bold mb-4 uppercase tracking-wider"
+                                            style={{ color: 'var(--color-text)' }}>
+                                            Research Foundation
+                                        </h3>
+                                        <div className="space-y-3">
+                                            <a href="https://arxiv.org/abs/2502.00893"
+                                                target="_blank"
+                                                className="block p-3 rounded border hover:opacity-80 transition"
+                                                style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
+                                                <div className="font-medium text-sm" style={{ color: 'var(--color-text)' }}>
+                                                    ToddlerBot (2025)
+                                                </div>
+                                                <div className="text-xs mt-1" style={{ color: 'var(--color-muted)' }}>
+                                                    Open-Source ML-Compatible Humanoid Platform for Loco-Manipulation
+                                                </div>
+                                                <div className="text-xs mt-1 font-mono" style={{ color: 'var(--color-accent)' }}>
+                                                    arXiv:2502.00893
+                                                </div>
+                                            </a>
+                                            <a href="https://arxiv.org/abs/2601.03607"
+                                                target="_blank"
+                                                className="block p-3 rounded border hover:opacity-80 transition"
+                                                style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
+                                                <div className="font-medium text-sm" style={{ color: 'var(--color-text)' }}>
+                                                    Locomotion Beyond Feet (2026)
+                                                </div>
+                                                <div className="text-xs mt-1" style={{ color: 'var(--color-muted)' }}>
+                                                    Multi-skill whole-body locomotion system
+                                                </div>
+                                                <div className="text-xs mt-1 font-mono" style={{ color: 'var(--color-accent)' }}>
+                                                    arXiv:2601.03607
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div className="mt-4 text-xs" style={{ color: 'var(--color-muted)' }}>
+                                            Funded by NSF • Stanford HAI • Stanford Wu Tsai Human Performance Alliance
                                         </div>
                                     </div>
                                 </motion.section>
