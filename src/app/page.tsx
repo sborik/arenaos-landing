@@ -205,6 +205,7 @@ export default function Home() {
                                 msOverflowStyle: 'none',
                                 marginRight: '-200px',
                                 paddingRight: '200px',
+                                scrollPaddingLeft: '32px',
                                 WebkitOverflowScrolling: 'touch'
                             } as any}>
 
@@ -225,7 +226,7 @@ export default function Home() {
                                 {/* MERGED HERO & SPECS PANEL */}
                                 <motion.section
                                     id="hero"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8 lg:ml-8"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8 lg:ml-8"
                                     style={{
                                         height: 'auto',
                                         minHeight: 'auto',
@@ -273,7 +274,7 @@ export default function Home() {
                                 {/* TODDLERBOT FOUNDATION */}
                                 <motion.section
                                     id="foundation"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -353,7 +354,7 @@ export default function Home() {
                                 {/* GAME MODES */}
                                 <motion.section
                                     id="modes"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -408,7 +409,7 @@ export default function Home() {
 
                                 {/* CORE STACK ARCHITECTURE */}
                                 <motion.section
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -421,7 +422,7 @@ export default function Home() {
                                 {/* PROOF OF CONCEPT */}
                                 <motion.section
                                     id="poc"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8" style={{ height: 'auto', margin: '0' }}
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8" style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
@@ -583,7 +584,7 @@ export default function Home() {
                                 {/* FUNDING TIERS */}
                                 <motion.section
                                     id="tiers"
-                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-center overflow-y-auto w-full lg:w-[600px] lg:ml-8"
+                                    className="glass-card p-6 lg:p-8 flex-shrink-0 lg:snap-start overflow-y-auto w-full lg:w-[600px] lg:ml-8"
                                     style={{ height: 'auto', margin: '0' }}
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
