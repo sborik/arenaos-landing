@@ -53,50 +53,58 @@ export default function MusicPlayer({ darkMode }: MusicPlayerProps) {
 
     return (
         <div
-            className="fixed bottom-3 right-3 z-50 rounded-xl overflow-hidden"
+            className="fixed bottom-3 right-3 z-50 rounded-lg overflow-hidden"
             style={{
                 backgroundImage: `url(${darkMode ? '/textures/eden-marble-dark.png' : '/textures/eden-marble.png'})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                padding: '5px',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.25)'
+                boxShadow: darkMode
+                    ? '0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)'
+                    : '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)'
             }}>
 
-            <div
-                className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-                style={{
-                    backgroundColor: darkMode ? 'rgba(20,20,20,0.85)' : 'rgba(255,255,255,0.85)',
-                    backdropFilter: 'blur(8px)'
-                }}>
+            {/* Pure marble background - no inner container color */}
+            <div className="flex items-center gap-1.5 px-2 py-1.5">
 
-                {/* Album Art */}
+                {/* Album Art - smaller */}
                 <img
                     src="/textures/to-the-arena-cover.jpg"
                     alt="To the Arena"
-                    className="w-10 h-10 rounded-md object-cover"
-                    style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}
+                    className="w-8 h-8 rounded object-cover"
+                    style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.4)' }}
                 />
 
-                {/* Track Info & Controls */}
+                {/* Track Info - smaller */}
                 <div className="flex flex-col min-w-0">
-                    <div className="text-xs font-medium truncate"
-                        style={{ color: darkMode ? '#fff' : '#000', maxWidth: '120px' }}>
+                    <div className="text-[10px] font-semibold truncate"
+                        style={{
+                            color: darkMode ? '#fff' : '#1a1a1a',
+                            maxWidth: '70px',
+                            textShadow: darkMode ? '0 1px 2px rgba(0,0,0,0.5)' : '0 0 4px rgba(255,255,255,0.8)'
+                        }}>
                         to-the-arena!
                     </div>
-                    <div className="text-[10px] truncate"
-                        style={{ color: darkMode ? '#aaa' : '#666' }}>
+                    <div className="text-[8px] truncate"
+                        style={{
+                            color: darkMode ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.7)',
+                            textShadow: darkMode ? '0 1px 2px rgba(0,0,0,0.5)' : '0 0 4px rgba(255,255,255,0.8)'
+                        }}>
                         A-RAM
                     </div>
                 </div>
 
-                {/* Progress Bar */}
-                <div className="flex items-center gap-1.5">
-                    <span className="text-[9px] font-mono" style={{ color: darkMode ? '#888' : '#666' }}>
+                {/* Progress - smaller */}
+                <div className="flex items-center gap-1">
+                    <span className="text-[8px] font-mono"
+                        style={{
+                            color: darkMode ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.6)',
+                            textShadow: darkMode ? '0 1px 2px rgba(0,0,0,0.5)' : '0 0 4px rgba(255,255,255,0.8)'
+                        }}>
                         {formatTime(currentTime)}
                     </span>
                     <div
-                        className="w-12 h-1 rounded-full overflow-hidden cursor-pointer"
-                        style={{ backgroundColor: darkMode ? '#444' : '#ddd' }}
+                        className="w-10 h-1 rounded-full overflow-hidden cursor-pointer"
+                        style={{ backgroundColor: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)' }}
                         onClick={(e) => {
                             const rect = e.currentTarget.getBoundingClientRect()
                             const x = e.clientX - rect.left
@@ -115,34 +123,34 @@ export default function MusicPlayer({ darkMode }: MusicPlayerProps) {
                     </div>
                 </div>
 
-                {/* Play/Pause Button */}
+                {/* Play/Pause - smaller */}
                 <button
                     onClick={togglePlay}
-                    className="w-7 h-7 rounded-full flex items-center justify-center transition hover:scale-105"
+                    className="w-6 h-6 rounded-full flex items-center justify-center transition hover:scale-105"
                     style={{
                         backgroundColor: '#1DB954',
                         color: '#000'
                     }}>
                     {isPlaying ? (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="6" y="4" width="4" height="16" />
                             <rect x="14" y="4" width="4" height="16" />
                         </svg>
                     ) : (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z" />
                         </svg>
                     )}
                 </button>
 
-                {/* Spotify Link */}
+                {/* Spotify Link - smaller */}
                 <a
                     href="https://open.spotify.com/track/1T4lPfwh8KfUL5shueHil4"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-5 h-5 flex items-center justify-center opacity-60 hover:opacity-100 transition"
+                    className="w-4 h-4 flex items-center justify-center opacity-70 hover:opacity-100 transition"
                     title="Listen on Spotify">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#1DB954">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954">
                         <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
                     </svg>
                 </a>
