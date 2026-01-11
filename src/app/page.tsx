@@ -7,6 +7,7 @@ import { IconHouse, IconMicrochip, IconGamepad, IconDollar, IconLampLight, IconL
 import MarbleBOM from '@/components/TerminalBOM'
 import { SUMO_BOM, SCHOOL_BOM, AERIAL_BOM, TOURNAMENT_BOM } from './boms'
 import CoreStackPanel from '@/components/scenes/CoreStackPanel'
+import MusicPlayer from '@/components/MusicPlayer'
 
 const GAME_MODES = [
     { genre: 'Fighting (Sumo)', examples: 'Street Fighter, Tekken', cables: 'No', cost: '$6k', tier: 'Tier 1' },
@@ -713,26 +714,8 @@ export default function Home() {
             {/* Software Architecture Modal */}
             {/* Removed in favor of CoreStackPanel */}
 
-            {/* Fixed Music Card - Marble styled with eden-marble texture */}
-            <div
-                className="fixed bottom-4 right-4 z-50 rounded-2xl overflow-hidden shadow-2xl"
-                style={{
-                    backgroundImage: `url(${darkMode ? '/textures/eden-marble-dark.png' : '/textures/eden-marble.png'})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    padding: '6px',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
-                }}>
-                <iframe
-                    src="https://open.spotify.com/embed/track/1T4lPfwh8KfUL5shueHil4?utm_source=generator&theme=0"
-                    width="300"
-                    height="80"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{ borderRadius: '12px', display: 'block' }}
-                />
-            </div>
+            {/* Custom Music Player */}
+            <MusicPlayer darkMode={darkMode} />
         </div>
     )
 }
