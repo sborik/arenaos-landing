@@ -99,7 +99,7 @@ export default function Home() {
                         {/* Left: arenaOS Logo - positioned absolutely to not affect navbar width */}
                         <div className="absolute -left-2 lg:left-0 top-1/2 -translate-y-1/2 z-10">
                             <img
-                                src={darkMode ? "/textures/white-logo-arenaos.png" : "/textures/black-logo-arenaos.png"}
+                                src={darkMode ? "/textures/black-logo-arenaos.png" : "/textures/white-logo-arenaos.png"}
                                 alt="arenaOS"
                                 className="h-[108px] lg:h-[162px] w-auto"
                                 style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15))' }}
